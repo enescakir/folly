@@ -5,14 +5,16 @@ name: linux
 on:
   push:
     branches:
-    - main
-  pull_request:
-    branches:
-    - main
+    - build-test
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        runs-on: [ubicloud-standard-2, ubicloud-standard-4, ubicloud-standard-8, ubicloud-standard-16]
+    name: CI ${{matrix.runs-on}}
+    runs-on: ${{matrix.runs-on}}
+    continue-on-error: true
     steps:
     - uses: actions/checkout@v2
     - name: Fetch boost
