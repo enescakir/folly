@@ -26,7 +26,10 @@ jobs:
 
     - name: df -Th
       run: df -Th
-      
+
+    - name: lspci
+      run: lspci -vv
+  
     - name: install fio
       run: sudo apt-get -y install fio
 
